@@ -60,6 +60,13 @@
     h1{font-size:25px}
   }
 </style>
+<style>
+.repnav{display:flex;gap:4px;padding:0 40px;border-bottom:1px solid var(--line);background:#fff}
+.repnav a{padding:14px 15px;font-size:14.5px;font-weight:600;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px}
+.repnav a.active{color:var(--slate);border-bottom-color:var(--orange)}
+.repnav a:hover{color:var(--ink)}
+@media(max-width:620px){.repnav{padding:0 22px}}
+</style>
 </head>
 <body>
 <div class="topbar"></div>
@@ -81,9 +88,10 @@
       <h1>Website Improvements</h1>
       <p class="sub">Summary of work — 19 June 2026 · Prepared by BrightSite</p>
     </header>
+    <nav class="repnav"><a href="index.html" class="active">Website updates</a><a href="performance.html">Performance</a><a href="contact.html">Contact</a></nav>
 
     <div class="body">
-      <p class="lede">In the last 24 hours we carried out a round of improvements to calliope-interpreters.org — covering search visibility, a few design and display fixes, the mobile experience, page speed, and your cookie-consent setup. This note summarises what is now live and what we are still finishing.</p>
+      <p class="lede">In the last 48 hours we carried out a round of improvements to calliope-interpreters.org — covering search visibility, a few design and display fixes, the mobile experience, page speed, your cookie-consent setup, and the contact page. This note summarises what is now live.</p>
 
       <h2>Search visibility</h2>
       <p>We made a series of refinements to strengthen how the site performs in search across your six languages:</p>
@@ -112,6 +120,12 @@
       <h2>Speed</h2>
       <p>We have enabled next-generation image delivery (WebP), which automatically serves smaller, faster-loading versions of your images to modern browsers. This improves load times, particularly on mobile.</p>
 
+      <h2>Contact page and newsletter <span class="badge">Now live</span></h2>
+      <p>We reworked the Contact pages across all six languages and moved the newsletter sign-up out of the footer into its own place beside the enquiry form. <a href="contact.html" style="color:var(--orange);text-decoration:none">See the Contact-page changes and rationale &rarr;</a></p>
+
+      <h2>AI discoverability <span class="badge">New</span></h2>
+      <p>We added an <strong>llms.txt</strong> file to your site — a structured index, a little like a sitemap but written for AI assistants. It helps tools like ChatGPT, Claude and Perplexity find and accurately summarise your services across all six languages, so when someone asks an AI about conference interpreting, your site is easier for it to represent correctly.</p>
+
       <h2>Privacy and cookie consent <span class="badge">Now live</span></h2>
       <p>While reviewing the site we found that the cookie-consent banner was not actually controlling your analytics — visitor tracking was running before anyone made a choice. We wrote custom code to handle this properly, and it is now live:</p>
       <ul>
@@ -124,18 +138,7 @@
       <h2>Behind the scenes</h2>
       <p>We have placed your site's custom code under proper version control — a safeguard that means every change is now tracked and recoverable. This is, in fact, what lay behind the portfolio display issue noted earlier: an earlier customisation had been quietly lost, and version control prevents that from recurring.</p>
 
-      <h2>Still to come</h2>
-      <ul>
-        <li>Completing the image-optimisation pass across your full media library.</li>
-        <li>A short review of optional website features we can trim to keep the site lean and fast.</li>
-        <li>A separate look at homepage load speed.</li>
-      </ul>
-      <p>We will keep you posted as the remaining items land. Please do let us know if you have any questions.</p>
-
-      <div class="signoff">
-        <p style="margin:0 0 2px">Regards,</p>
-        <p style="margin:0"><span class="nm">Michael McMahon</span><br>BrightSite<br><a href="https://brightsite.digital">brightsite.digital</a></p>
-      </div>
+      <p>That completes this round of improvements &mdash; the full before/after performance figures are on the <a href="performance.html" style="color:var(--orange);text-decoration:none">Performance</a> page. Please do let us know if you have any questions.</p>
     </div>
     <footer class="foot">Prepared by BrightSite for Calliope Interpreters · 19 June 2026</footer>
   </div>

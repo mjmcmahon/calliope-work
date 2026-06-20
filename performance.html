@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Calliope Interpreters — Website Performance (June 2026)</title>
+<style>
+  :root{
+    --orange:#E54000; --slate:#5F6366; --ink:#2f3133; --muted:#6c7073;
+    --line:#e7e6e3; --bg:#ffffff; --soft:#faf9f7; --green:#2e7d4f;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--soft); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.62; font-size:17px;
+  }
+  .topbar{height:6px;background:linear-gradient(90deg,#2bb673 0%,#f7d417 20%,#f08a1d 40%,#e5400f 58%,#d6336c 76%,#6f4ca0 100%)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+  .sheet{background:var(--bg);margin:26px auto 60px;border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 10px 34px rgba(0,0,0,.05);overflow:hidden}
+  header.head{padding:38px 40px 30px;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:13px;margin-bottom:26px}
+  .mark{flex:0 0 auto}
+  .brand .name{font-weight:700;font-size:20px;color:var(--slate);letter-spacing:.2px;line-height:1.1}
+  .brand .name span{display:block;font-weight:600;color:#9a9ea1;font-size:14.5px}
+  h1{font-size:30px;line-height:1.18;margin:0 0 8px;color:var(--ink);letter-spacing:-.2px}
+  .sub{color:var(--muted);font-size:15.5px;margin:0}
+  .body{padding:14px 40px 8px}
+  .lede{font-size:18px;color:#43474a;margin:22px 0 6px}
+  h2{font-size:20px;margin:38px 0 4px;padding-left:14px;border-left:4px solid var(--orange);color:var(--slate);letter-spacing:.2px}
+  h2 .badge{font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--green);background:#eaf5ee;border:1px solid #cfe8da;border-radius:999px;padding:3px 9px;margin-left:10px;vertical-align:middle}
+  h2 .badge.prog{color:#9a6a00;background:#fbf3e0;border-color:#efdcae}
+  p{margin:12px 0}
+  ul{margin:12px 0;padding-left:22px}
+  li{margin:9px 0}
+  .note{color:#54585b}
+  .kicker{font-weight:600;color:var(--ink)}
+  figure{margin:20px 0 6px}
+  figcaption{font-size:13.5px;color:var(--muted);margin-top:9px;text-align:center}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0 4px}
+  .pair .cap{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:0 0 8px;text-align:center}
+  .pair .cap.after{color:var(--green)}
+  .shot{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  .shot img{display:block;width:100%;height:auto}
+  /* mobile screenshots row — capped height, side by side */
+  .phones{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin:18px 0 4px}
+  .phone{flex:0 1 230px;max-width:230px;text-align:center}
+  .phone .frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+  .phone img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;background:#fff}
+  .phone figcaption{margin-top:10px}
+  .signoff{margin:34px 0 6px;padding-top:20px;border-top:1px solid var(--line);color:#43474a}
+  .signoff .nm{font-weight:600;color:var(--ink)}
+  .signoff a{color:var(--orange);text-decoration:none}
+  footer.foot{padding:18px 40px 30px;color:#a7abae;font-size:12.5px}
+  @media (max-width:620px){
+    header.head,.body,footer.foot{padding-left:22px;padding-right:22px}
+    .pair{grid-template-columns:1fr}
+    h1{font-size:25px}
+  }
+</style>
+
+<style>
+  .lede2{font-size:18px;color:#43474a;margin:20px 0 6px}
+  .scorewrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:14px 0 6px}
+  .scorecard{border:1px solid var(--line);border-radius:12px;padding:20px 22px;background:#fff}
+  .scorecard h3{margin:0 0 2px;font-size:15px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .ba .col{border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;background:var(--soft)}
+  .ba .col.after{border-style:dashed;color:#9aa0a4;background:#fcfcfb}
+  .ba .lab{font-size:11.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .gauge{font-size:46px;font-weight:800;line-height:1}
+  .gauge small{font-size:15px;font-weight:600;color:var(--muted)}
+  .g-good{color:#2e7d4f}.g-mid{color:#c77f12}.g-pend{color:#bcc1c4;font-size:18px;font-weight:600;padding:14px 0;display:block}
+  .metrics{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+  .chip{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:#54585b;background:#fff}
+  .chip b{color:var(--ink)}
+  .reportlinks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 4px}
+  .rl{display:block;border:1px solid var(--line);border-radius:10px;padding:16px 18px;text-decoration:none;background:#fff;color:var(--ink)}
+  .rl:hover{border-color:var(--orange)}
+  .rl .t{font-weight:700;color:var(--slate)}
+  .rl .s{font-size:13px;color:var(--muted);margin-top:3px}
+  .rl.pend{border-style:dashed;color:#9aa0a4;pointer-events:none}
+  .note2{font-size:13.5px;color:var(--muted)}
+  @media(max-width:620px){.scorewrap,.reportlinks{grid-template-columns:1fr}}
+</style>
+
+<style>
+.repnav{display:flex;gap:4px;padding:0 40px;border-bottom:1px solid var(--line);background:#fff}
+.repnav a{padding:14px 15px;font-size:14.5px;font-weight:600;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px}
+.repnav a.active{color:var(--slate);border-bottom-color:var(--orange)}
+.repnav a:hover{color:var(--ink)}
+@media(max-width:620px){.repnav{padding:0 22px}}
+</style>
+</head><body>
+<div class="topbar"></div>
+<div class="wrap"><div class="sheet">
+  <header class="head">
+    <div class="brand">
+        <svg class="mark" width="42" height="42" viewBox="0 0 42 42" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <g style="mix-blend-mode:multiply">
+            <circle cx="15" cy="16" r="11" fill="#2bb673"/>
+            <circle cx="22" cy="12" r="11" fill="#f7d417"/>
+            <circle cx="28" cy="17" r="11" fill="#e5400f"/>
+            <circle cx="20" cy="24" r="11" fill="#2f6fb0"/>
+            <circle cx="26" cy="26" r="10" fill="#6f4ca0"/>
+          </g>
+        </svg>
+        <div class="name">Calliope Interpreters<span>Website update — BrightSite</span></div>
+      </div>
+      <h1>Website Performance</h1>
+    <p class="sub">Performance optimisation — June 2026 · Prepared by BrightSite</p>
+  </header>
+    <nav class="repnav"><a href="index.html">Website updates</a><a href="performance.html" class="active">Performance</a><a href="contact.html">Contact</a></nav>
+  <div class="body">
+    <p class="lede2">Alongside the recent improvements, we're carrying out a round of <strong>performance optimisation</strong> on your website — making the pages load and respond faster, particularly on mobile. This note explains what we're doing, why it matters, and shows the measured results.</p>
+
+    <h2>What we're optimising</h2>
+    <p>The work focuses on the homepage, where most visitors arrive. In plain terms, we're:</p>
+    <ul>
+      <li>Loading the main banner image <span class="kicker">sooner</span>, so the page feels fast from the first moment instead of waiting for it.</li>
+      <li><span class="kicker">Deferring background scripts</span> so the page becomes usable quickly, rather than holding everything up for code it doesn't immediately need.</li>
+      <li>Removing styling and code the homepage loads but <span class="kicker">never uses</span> — a surprisingly large amount, which slowed every single visit.</li>
+      <li>Taking the live <span class="kicker">Instagram feed off the homepage</span> (it reached out to an external service on every visit) and removing an unused newsletter form's scripts from most pages.</li>
+    </ul>
+    <p class="note">Each change is tested before it goes live, and none of it alters how your site looks or works for visitors — it simply makes it faster.</p>
+
+    <h2>Why it matters</h2>
+    <p><span class="kicker">Search ranking.</span> Google factors page speed and "Core Web Vitals" into where sites rank, and it judges them <strong>mobile-first</strong>. A faster mobile site is more likely to be found — directly relevant for competing in each of your six language markets.</p>
+    <p><span class="kicker">Visitor engagement.</span> People leave slow pages before they finish loading. A faster site holds attention, reduces drop-off, and makes it more likely a visitor reaches your contact form. Speed is part of the experience.</p>
+
+    <h2>The results <span class="badge prog">Before / after</span></h2>
+    <p class="note2">Measured with <strong>Google Lighthouse</strong> — the same engine Google uses. Scores are out of 100; mobile carries the most weight.</p>
+
+    <div class="scorewrap">
+      <div class="scorecard">
+        <h3>Mobile <span style="font-weight:600;color:#bcc1c4">— the priority</span></h3>
+        <div class="ba">
+          <div class="col"><div class="lab">Before</div><div class="gauge g-mid">65<small>/100</small></div>
+            <div class="metrics"><span class="chip">Main image: <b>6.7s</b></span><span class="chip">First paint: <b>4.0s</b></span><span class="chip">Interactive: <b>8.4s</b></span></div>
+          </div>
+          <div class="col"><div class="lab">After</div><div class="gauge g-mid">78<small>/100</small></div>
+            <div class="metrics"><span class="chip">Main image: <b>5.8s</b></span><span class="chip">First paint: <b>1.5s</b></span><span class="chip">Interactive: <b>6.1s</b></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="scorecard">
+        <h3>Desktop</h3>
+        <div class="ba">
+          <div class="col"><div class="lab">Before</div><div class="gauge g-good">90<small>/100</small></div>
+            <div class="metrics"><span class="chip">Main image: <b>1.2s</b></span><span class="chip">First paint: <b>0.8s</b></span><span class="chip">Interactive: <b>1.2s</b></span></div>
+          </div>
+          <div class="col"><div class="lab">After</div><div class="gauge g-good">98<small>/100</small></div>
+            <div class="metrics"><span class="chip">Main image: <b>1.2s</b></span><span class="chip">First paint: <b>0.4s</b></span><span class="chip">Interactive: <b>1.2s</b></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note"><strong>Results:</strong> desktop 90 &rarr; 98, mobile 65 &rarr; 78. The unused-CSS removal is now complete &mdash; total CSS is down about 78%, and pages load with no render-blocking stylesheets, which cut the mobile first-paint from 4.0s to 1.5s.</p>
+
+    <h2>Full reports</h2>
+    <p class="note2">The complete, interactive Lighthouse reports — every metric and recommendation, straight from Google's tool:</p>
+    <div class="reportlinks">
+      <a class="rl" href="lighthouse-mobile-before.html"><div class="t">Mobile report — before &rarr;</div><div class="s">Full Lighthouse breakdown (mobile)</div></a>
+      <a class="rl" href="lighthouse-desktop-before.html"><div class="t">Desktop report — before &rarr;</div><div class="s">Full Lighthouse breakdown (desktop)</div></a>
+      <a class="rl" href="lighthouse-mobile-after.html"><div class="t">Mobile report — after &rarr;</div><div class="s">Full Lighthouse breakdown (mobile)</div></a>
+      <a class="rl" href="lighthouse-desktop-after.html"><div class="t">Desktop report — after &rarr;</div><div class="s">Full Lighthouse breakdown (desktop)</div></a>
+    </div>
+  </div>
+  <footer class="foot">Prepared by BrightSite for Calliope Interpreters · Performance · June 2026</footer>
+</div></div>
+</body></html>
